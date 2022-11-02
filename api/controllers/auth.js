@@ -6,6 +6,15 @@ import jwt from "jsonwebtoken";
 
 export const register = async (req, res, next) => {
     try {
+
+        const existingUser = await User.findOne({ username: req.body.username });
+        if (existingUser) return next(createError(400, "User already in exist"));
+
+        const existingEmail = await User.findOne({ email: req.body.email });
+        if (existingEmail) return next(createError(400, "Email already in exist"));
+
+        
+
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(req.body.password, salt);
 
@@ -43,8 +52,8 @@ export const login = async (req, res, next) => {
         const { password, isAdmin, ...otherDetails } = user._doc;
         res
             .status(202)
-            .cookie("access_token", token, { httpOnly: true })
-            .json({ details: { ...otherDetails }, isAdmin });
+            // .cookie("access_token", token, { httpOnly: true })
+            .json({ details: { ...otherDetails }, isAdmin, access_token: token });
 
     } catch (err) {
         next(err);

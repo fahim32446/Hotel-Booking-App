@@ -11,17 +11,33 @@ import { verifyAdmin, verifyToken, verifyUser } from "../utils/verifyToken.js";
 const router = express.Router();
 
 
+// //UPDATE
+// router.put("/:id", verifyUser, updateUser);
+
+// //DELETE
+// router.delete("/:id", verifyUser, deleteUser);
+
+// //GET
+// router.get("/:id", verifyUser, getUser);
+
+// //GET ALL
+// router.get("/", verifyAdmin, getUsers);
+
+
+// Cookies Not Working on Heroku, So finding the solution
 //UPDATE
-router.put("/:id", verifyUser, updateUser);
+router.put("/:id", updateUser);
 
 //DELETE
-router.delete("/:id", verifyUser, deleteUser);
+router.delete("/:id", deleteUser);
 
 //GET
-router.get("/:id", verifyUser, getUser);
+router.get("/:id", getUser);
 
 //GET ALL
-//router.get("/", verifyAdmin, getUsers);
-router.get("/", verifyAdmin, getUsers);
+router.get("/", getUsers);
+
+
+
 
 export default router;

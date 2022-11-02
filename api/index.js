@@ -4,19 +4,30 @@ import mongoose from 'mongoose';
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
+const PORT = process.env.PORT || 5000;
 const app = express();
 
 
-const corsOptions ={
-    origin:['http://localhost:5173', 'https://api.cloudinary.com', 'http://localhost:5174'], 
-    credentials:true,           
-    optionSuccessStatus:200,
- }
- 
- app.use(cors(corsOptions)) 
+const corsOptions = {
+    origin: [
+        'http://localhost:5173',
+        'https://api.cloudinary.com',
+        'http://localhost:5174',
+        'https://booking-app-live.netlify.app',
+        'https://booking-app-dashboard.netlify.app',
+        'https://booking-app-api-v1.herokuapp.com',
+        'https://booking-app-api-v1.herokuapp.com/api/users'
 
+    ],
+    credentials: true,
+    optionSuccessStatus: 200,
+    sameSite: "none",
+    secure: true,
+    domain: "http://localhost:5173",
+    httpOnly: true
+}
 
-
+app.use(cors(corsOptions))
 
 import authRoute from "./routes/auth.js";
 import usersRoute from "./routes/users.js";
@@ -24,14 +35,8 @@ import hotelsRoute from "./routes/hotels.js";
 import roomsRoute from "./routes/rooms.js";
 
 dotenv.config()
-
 app.use(cookieParser());
-
-
-
 app.use(express.json());
-
-
 
 
 
@@ -61,7 +66,12 @@ app.use((err, req, res, next) => {
     });
 });
 
-app.listen(5000, () => {
+
+app.listen(process.env.PORT || PORT, () => {
     connect();
-    console.log("Connected to backend.");
+    console.log(`Running on ${PORT}`);
 });
+
+app.get('/', (req, res) => {
+    res.send("App is running")
+})

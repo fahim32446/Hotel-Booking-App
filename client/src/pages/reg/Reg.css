@@ -1,42 +1,45 @@
-.login {
+.Reg {
     height: 100vh;
     display: flex;
-  }
+    flex-direction: row;
 
-  .loginImg{
+
+}
+
+.regSideImg {
     width: 50%;
-  }
+}
 
-  .loginImg img{
+.regSideImg img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
+}
 
-  .loginForm {
-    background-color: rgb(209, 209, 209);
+.regForm {
+    background-color: rgb(201, 201, 211);
     display: flex;
     width: 50%;
     align-items: center;
 
 }
-  
-  .lContainer {
+
+.lContainerReg {
+    margin-left: 15%;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding: 150px;
     border-radius: 5px;
-  }
-  
-  .lInput{
+}
+
+.lInputReg {
     height: 30px;
     padding: 8px;
     border-radius: 5px;
     border: 0px;
-  }
-  
-  .lButton {
+}
+
+.lButtonReg {
     border: none;
     padding: 10px 20px;
     background-color: blueviolet;
@@ -44,13 +47,28 @@
     font-weight: bold;
     cursor: pointer;
     border-radius: 5px;
-  }
-  
-  .lButton:disabled{
+}
+
+.lButtonReg:disabled {
     background-color: #0071c28c;
     cursor: not-allowed;
-  }
+}
 
-  .registrationText{
+.registrationText {
     color: white;
-  }
+}
+
+
+.imageInput {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.imageInput::file-selector-button {
+    font-weight: bold;
+    color: blue;
+    padding: 0.5em;
+    border: thin solid grey;
+    border-radius: 3px;
+}

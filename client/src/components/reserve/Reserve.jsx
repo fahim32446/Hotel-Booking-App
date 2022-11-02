@@ -11,11 +11,13 @@ import { URL } from '../../const/url'
 const Reserve = ({ setOpen, hotelId }) => {
   const [selectedRooms, setSelectedRooms] = useState([]);
   const { data, loading, error } = useFetch(`${URL}/hotels/room/${hotelId}`);
+
   const { date: dates } = useContext(SearchContext);
 
+ 
 
 
-  // when user search a date and we put date range into a array
+  // when user search a date then we put date range into a array
   const getDatesInRange = (startDate, endDate) => {
     const start = new Date(startDate);
     const end = new Date(endDate);
@@ -28,6 +30,7 @@ const Reserve = ({ setOpen, hotelId }) => {
       date.setDate(date.getDate() + 1);
     }
     return dates;
+
   };
   const alldates = getDatesInRange(dates[0].startDate, dates[0].endDate);
 

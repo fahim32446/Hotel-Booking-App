@@ -7,20 +7,26 @@ import { hotelInputs } from "../../formSource";
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
 import { URL } from "../../const/url"
+import { PropagateLoader } from "react-spinners";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { useNavigate } from "react-router-dom";
 
 
 const NewHotel = () => {
   const [files, setFiles] = useState("");
   const [info, setInfo] = useState({});
   const [rooms, setRooms] = useState([]);
+  const [image, setImage] = useState("");
+  const [uploading, setUploading] = useState(false);
+  const navigate = useNavigate();
 
 
-  const { data, loading, error } = useFetch(`${URL}/rooms`);
+  // const { data, loading, error } = useFetch(`${URL}/rooms`);
 
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
- 
+
   // const handleSelect = (e) => {
   //   const value = Array.from(
   //     e.target.selectedOptions,
@@ -30,11 +36,12 @@ const NewHotel = () => {
   //   console.log(rooms);
   // };
 
-  
+
 
   const handleClick = async (e) => {
     e.preventDefault();
     try {
+      setUploading(true);
       const list = await Promise.all(
         Object.values(files).map(async (file) => {
           const data = new FormData();
@@ -45,19 +52,18 @@ const NewHotel = () => {
             data, {
             withCredentials: false,
           });
-
           const { url } = uploadRes.data;
           return url;
         })
       );
-
+      setImage(list)
       const newHotel = {
         ...info,
-        // rooms,
         photos: list,
       };
-
       await axios.post(`${URL}/hotels`, newHotel);
+      setUploading(false);
+      navigate('../hotels')
 
     } catch (err) {
       console.log(err)
@@ -74,13 +80,33 @@ const NewHotel = () => {
         </div>
         <div className="bottom">
           <div className="left">
-            <img
-              src={"https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"}
-              alt=""
-            />
+
+            {
+              uploading ?
+                <PropagateLoader
+                  color="#36d7b7"
+                  loading
+                  size={15}
+                /> :
+                image ? image.map((url, i) =>
+                  <LazyLoadImage
+                    key={i}
+                    className="img"
+                    src={url}
+                  />
+                ) :
+                  <LazyLoadImage
+                    className="img"
+                    src={"https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"}
+                  />
+            }
           </div>
+
+
           <div className="right">
-            <form>
+
+            <form onSubmit={handleClick}>
+
               <div className="formInput">
                 <label htmlFor="file">
                   Image: <DriveFolderUploadOutlinedIcon className="icon" />
@@ -101,10 +127,23 @@ const NewHotel = () => {
                     id={input.id}
                     onChange={handleChange}
                     type={input.type}
+                    required={true}
                     placeholder={input.placeholder}
                   />
                 </div>
               ))}
+
+
+              <div className="formInput">
+                <label>Description</label>
+                <textarea
+                  id='desc'
+                  type='text'
+                  required={true}
+                  onChange={handleChange}
+                  placeholder="Give hotel description"
+                />
+              </div>
 
               <div className="formInput">
                 <label>Featured</label>
@@ -127,7 +166,7 @@ const NewHotel = () => {
                     ))}
                 </select>
               </div> */}
-              <button onClick={handleClick}>Send</button>
+              <button type="submit">Send</button>
             </form>
           </div>
         </div>

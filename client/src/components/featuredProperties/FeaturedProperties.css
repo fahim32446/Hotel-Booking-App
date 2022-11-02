@@ -5,6 +5,9 @@
     justify-content: space-between;
     gap: 20px;
   }
+  .FPL{
+    display: flex;
+  }
   
   .fpItem{
     flex: 1;

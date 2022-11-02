@@ -6,9 +6,13 @@ import { AuthContext } from "../../context/AuthContext";
 import "./login.scss";
 import { URL } from "../../const/url";
 import React from "react";
+import Cookies from 'universal-cookie';
 
 
 const Login = () => {
+
+  const cookies = new Cookies();
+
   const [credentials, setCredentials] = useState({
     username: undefined,
     password: undefined,
@@ -37,6 +41,9 @@ const Login = () => {
       })
 
       if (res.data.isAdmin) {
+
+        console.log(res.data);
+        cookies.set('access_token', res.data?.access_token, { path: '/' });
         dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
         navigate("/");
 

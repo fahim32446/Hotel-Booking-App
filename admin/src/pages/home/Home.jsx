@@ -21,7 +21,7 @@ const Home = () => {
                 </div>
                 <div className="charts">
                     <Featured />
-                    <Chart title="Last 6 Hotel Registration" aspect={2 / 1} />
+                    <Chart title="Last 6 Month Hotel Registration" aspect={2 / 1} />
                 </div>
 
                 <div className="listContainer">

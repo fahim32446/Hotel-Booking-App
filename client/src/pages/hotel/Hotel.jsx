@@ -12,14 +12,18 @@ import { URL } from "../../const/url";
 import { SearchContext } from '../../context/SearchContext';
 import { AuthContext } from '../../context/AuthContext';
 import Reserve from '../../components/reserve/Reserve';
+import HotelLoading from './HotelLoading';
+
+
 
 const Hotel = () => {
   const location = useLocation();
   const id = location.pathname.split("/")[2];
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
-
   const { data, loading, error } = useFetch(`${URL}/hotels/find/${id}`);
+
+
 
   const { user } = useContext(AuthContext);
   const { date, options } = useContext(SearchContext);
@@ -43,32 +47,32 @@ const Hotel = () => {
 
   const handleMove = (direction) => {
     let newSlideNumber;
-
     if (direction === "l") {
       newSlideNumber = slideNumber === 0 ? 5 : slideNumber - 1;
     } else {
       newSlideNumber = slideNumber === 5 ? 0 : slideNumber + 1;
     }
-
     setSlideNumber(newSlideNumber)
   };
 
   const handleClick = () => {
-
     if (user) {
       setOpenModal(true);
     } else {
-
       navigate("/login");
     }
   };
 
+  
   return (
 
     <div>
+
       <Navbar />
       <Header type="list" />
-      {loading ? "Loading..."
+      {loading ? <div className="hotelLoading">
+        <HotelLoading />
+      </div>
         : (
           <div className="hotelContainer">
 
@@ -110,13 +114,14 @@ const Hotel = () => {
               </span>
               <div className="hotelImages">
                 {data.photos?.map((photo, i) => (
+
                   <div className="hotelImgWrapper" key={i}>
-                    <img
+                   <img
                       onClick={() => handleOpen(i)}
-                      src={photo.src}
+                      src={photo}
                       alt=""
                       className="hotelImg"
-                    />
+                    /> 
                   </div>
                 ))}
               </div>
@@ -145,7 +150,7 @@ const Hotel = () => {
             <Footer />
           </div>
         )}
-         {openModal && <Reserve setOpen={setOpenModal} hotelId={id}/>}
+      {openModal && <Reserve setOpen={setOpenModal} hotelId={id} />}
     </div>
   )
 }

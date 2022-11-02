@@ -9,6 +9,7 @@ import SearchItem from "../../components/searchItem/SearchItem";
 import useFetch from "../../hooks/useFetch";
 import { URL } from "../../const/url";
 import { SearchContext } from "../../context/SearchContext";
+import ListLoading from "./ListLoading";
 
 const List = () => {
   const location = useLocation();
@@ -27,6 +28,7 @@ const List = () => {
     reFetch();
   };
   return (
+
     <div>
       <Navbar />
       <Header type="list" />
@@ -38,7 +40,7 @@ const List = () => {
 
             <div className="lsItem">
               <label>Destination</label>
-              <input  onChange={(e) => setDestination(e.target.value)} placeholder={destination} type="text" />
+              <input onChange={(e) => setDestination(e.target.value)} placeholder={destination} type="text" />
             </div>
 
 
@@ -115,7 +117,10 @@ const List = () => {
 
           <div className="listResult">
             {loading ? (
-              "loading"
+              <div className="loadingList">
+                <ListLoading />
+
+              </div>
             ) : (
               <>
                 {data.map((item) => (

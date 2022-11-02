@@ -5,6 +5,11 @@
     justify-content: space-between;
     gap: 20px;
   }
+
+  .pLoading{
+    display: flex;
+    flex-wrap: wrap;
+  }
   
   .pListItem{
     flex:1;

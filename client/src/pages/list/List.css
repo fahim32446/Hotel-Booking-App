@@ -4,7 +4,13 @@
     margin-top: 10px;
     position: relative;
   }
-  
+  .loadingList{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10%;
+  }
+
   .listWrapper {
     width: 100%;
     max-width: 1024px;
