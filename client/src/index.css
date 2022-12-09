@@ -4,7 +4,7 @@
 
 @layer components {
     .mobile_input_field {
-      @apply flex gap-2 items-center border-2 px-20 rounded-md py-2 md:border-none md:px-0 md:py-0;
+      @apply flex gap-2 items-center border-2 px-14 rounded-md py-2 md:border-none md:px-0 md:py-0;
     }
   }
 

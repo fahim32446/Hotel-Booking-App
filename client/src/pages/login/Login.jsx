@@ -43,13 +43,13 @@ const Login = () => {
 
         <>
             <Navbar />
-            <div className="login">
+            <div className="flex flex-col md:flex-row h-[100vh]">
 
-                <div className="loginImg">
+                <div className="loginImg hidden md:block">
                     <img src="https://content.presspage.com/uploads/1376/1920_mtcookhookerlakenewzealand-2.jpg?10000" alt="" srcset="" />
                 </div>
 
-                <div className="loginForm">
+                <div className="flex justify-center items-center bg-gradient-to-r from-cyan-500 to-blue-500">
                     <form onSubmit={handleClick} className="lContainer">
                         <input
                             type="text"
@@ -67,11 +67,11 @@ const Login = () => {
                             className="lInput"
                             required='true'
                         />
-                        <button type="submit" disabled={loading} className="lButton">
+                        <button type="submit" disabled={loading} className="bg-green-400 rounded-md">
                             Login
                         </button>
                         {error && <span>{error.message}</span>}
-                        <p className="registrationText">Don't have an account registration
+                        <p className="text-black">Don't have an account registration
                             <Link style={{ color: 'yellow', textDecoration: 'none' }} to='../registration'> Here</Link>
                         </p>
                     </form>

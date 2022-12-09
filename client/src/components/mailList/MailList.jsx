@@ -5,8 +5,8 @@ const MailList = () => {
   return (
     <div className="bg-[#003580] w-full text-white py-16">
       <div className="container mx-auto max-w-5xl py-2 px-2 md:px-0 ">
-        <div className="flex flex-col items-center gap-5">
-          <h1 className="text-4xl font-bold">Save time, save money</h1>
+        <div className="flex flex-col justify-center items-center gap-5">
+          <h1 className="text-4xl font-bold text-center">Save time, save money</h1>
           <span className="font-bold">
             Sign up and we'll send the best deals to you
           </span>
