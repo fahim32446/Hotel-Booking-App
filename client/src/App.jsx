@@ -10,6 +10,7 @@ import Hotel from "./pages/hotel/Hotel";
 import List from "./pages/list/List";
 import Login from './pages/login/Login';
 import Reg from './pages/reg/Reg';
+import Test from './pages/Test';
 
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/hotels/:id" element={<Hotel />} />
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Reg />} />
+        <Route path="/test" element={<Test />} />
 
       </Routes>
     </BrowserRouter>

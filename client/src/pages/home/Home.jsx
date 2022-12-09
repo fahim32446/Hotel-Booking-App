@@ -15,11 +15,11 @@ const Home = () => {
       <Navbar />
       <Header />
 
-      <div className="homeContainer">
+      <div className="mt-[50px] flex flex-col items-center gap-[30px]">
         <Featured />
-        <h1 className='homeTitle'>Browse by property type</h1>
+        <h1 className='container mx-auto max-w-5xl py-2 px-2 md:px-0 text-xl font-semibold'>Browse by property type</h1>
         <PropertyList />
-        <h1>Home guests love</h1>
+        <h1 className='text-xl font-semibold'>Home guests love</h1>
         <FeaturedProperties/>
         <MailList/>
         <Footer/>

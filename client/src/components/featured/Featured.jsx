@@ -42,7 +42,7 @@ const Featured = () => {
             <FeaturedLoading />
         </div> : (
             <>
-                <div className="featured">
+                <div className="featured px-2 md:px-0">
                     <div style={{ cursor: "pointer" }} onClick={() => handleClick('Dhaka')} className="featuredItem">
                         <img
                             src="https://cdn.britannica.com/97/189797-050-1FC0041B/Night-view-Dhaka-Bangladesh.jpg"
@@ -50,7 +50,7 @@ const Featured = () => {
                             className="featuredImg"
                         />
                         <div className="featuredTitles">
-                            <h1>Dhaka</h1>
+                            <h1 className='text-bold text-2xl'>Dhaka</h1>
                             <h2>{data[0]}</h2>
                         </div>
                     </div>
@@ -62,7 +62,7 @@ const Featured = () => {
                             className="featuredImg"
                         />
                         <div className="featuredTitles">
-                            <h1>Chittagong</h1>
+                            <h1 className='text-bold text-2xl'>Chittagong</h1>
                             <h2>{data[1]}</h2>
                         </div>
                     </div>
@@ -73,7 +73,7 @@ const Featured = () => {
                             className="featuredImg"
                         />
                         <div className="featuredTitles">
-                            <h1>Sylhet</h1>
+                            <h1 className='text-bold text-2xl'>Sylhet</h1>
                             <h2>{data[2]}</h2>
                         </div>
                     </div>

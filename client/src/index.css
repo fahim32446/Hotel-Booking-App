@@ -1,5 +1,14 @@
-@media only screen and (max-width: 600px) {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .mobile_input_field {
+      @apply flex gap-2 items-center border-2 px-20 rounded-md py-2 md:border-none md:px-0 md:py-0;
+    }
+  }
 
 
-  
+  body {
+    overflow-x: hidden; /* Hide horizontal scrollbar */
   }

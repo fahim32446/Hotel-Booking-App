@@ -66,7 +66,7 @@ const Hotel = () => {
   
   return (
 
-    <div>
+    <div className=''>
 
       <Navbar />
       <Header type="list" />
@@ -74,7 +74,7 @@ const Hotel = () => {
         <HotelLoading />
       </div>
         : (
-          <div className="hotelContainer">
+          <div className="container mx-auto max-w-5xl py-2 px-2 md:px-0 ">
 
             {open && (
               <div className="slider">
@@ -99,8 +99,8 @@ const Hotel = () => {
               </div>
             )}
 
-            <div className="hotelWrapper">
-              <button onClick={handleClick} className="bookNow">Reserve or Book Now!</button>
+            <div className="flex flex-col gap-2 relative">
+              <button onClick={handleClick} className="bookNow hidden md:block">Reserve or Book Now!</button>
               <h1 className="hotelTitle">{data.name}</h1>
               <div className="hotelAddress">
                 <FontAwesomeIcon icon={faLocationDot} />
@@ -125,7 +125,7 @@ const Hotel = () => {
                   </div>
                 ))}
               </div>
-              <div className="hotelDetails">
+              <div className="flex flex-col md:flex-row gap-4 justify-between">
                 <div className="hotelDetailsTexts">
                   <h1 className="hotelTitle">{data.title}</h1>
                   <p className="hotelDesc">
